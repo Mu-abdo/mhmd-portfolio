@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero__inner">
+    <div class="hero__text">
+      <p class="eyebrow">Portfolio · 2026</p>
+      <!-- عدّل اسمك ومسمّاك الوظيفي هنا -->
+      <h1 class="hero__name">Muhammed AbdElrhman Eisa "JuBa"</h1>
+      <p class="hero__role">ERP Developer | Full-Stack Web Developer</p>
+      <!-- عدّل النبذة عنك هنا -->
+      <p class="hero__bio">
+        Results-driven Web Developer with 7+ years of experience creating responsive,
+        high-performing websites and web applications. Skilled in HTML5, CSS3, JavaScript (ES6+),
+        React.js, and UI frameworks like Tailwind and Bootstrap. Proficient in WordPress theme/plugin development,
+        Shopify customization, and API/JSON integration.
+        Strong in converting Figma designs to clean code and deploying sites efficiently.
+        Focused on delivering fast,
+        user-centered digital solutions with solid problem-solving and communication skills.
+      </p>
+
+      <div class="hero__actions">
+        <!-- عدّل رقم الواتساب (بصيغة دولية بدون +) -->
+        <a class="icon-btn" href="https://wa.me/201552259617" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.13c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.12.11-1.8-.11a15.9 15.9 0 0 1-1.66-.61c-2.93-1.27-4.84-4.23-4.99-4.43-.15-.2-1.19-1.58-1.19-3.02 0-1.43.75-2.14 1.02-2.43.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.65.5.24.58.82 2.01.89 2.15.07.15.12.32.02.52-.1.2-.15.32-.29.49-.15.18-.31.4-.44.53-.15.15-.3.31-.13.6.17.29.75 1.24 1.61 2.01 1.11 1 2.04 1.31 2.34 1.46.29.15.46.12.63-.07.17-.2.72-.84.92-1.13.19-.29.39-.24.65-.14.27.1 1.7.81 1.99.95.29.15.48.22.55.34.07.13.07.73-.17 1.42Z"/></svg>
+        </a>
+        <!-- عدّل الإيميل -->
+        <a class="icon-btn" href="mailto:mu.abdo1996@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6 8.5 6.5L20.5 6"/></svg>
+        </a>
+        <!-- عدّل رابط ملف الـ CV -->
+        <a class="btn-primary" href="https://drive.google.com/file/d/1CeAvAWJFG0N_vBRQX3OHT65gdTXLUFZw/view?usp=drive_link" target="_blank" rel="noopener">View CV</a>
+      </div>
+    </div>
+
+    <!-- <div class="hero__mark" aria-hidden="true">
+      <svg viewBox="0 0 360 360" class="mark-svg">
+        <line x1="60" y1="80" x2="180" y2="150" class="mark-line"/>
+        <line x1="180" y1="150" x2="300" y2="90" class="mark-line"/>
+        <line x1="180" y1="150" x2="140" y2="270" class="mark-line"/>
+        <line x1="180" y1="150" x2="280" y2="250" class="mark-line"/>
+        <line x1="140" y1="270" x2="280" y2="250" class="mark-line"/>
+        <circle cx="60" cy="80" r="7" class="dot dot--float1"/>
+        <circle cx="300" cy="90" r="10" class="dot dot--float2"/>
+        <circle cx="180" cy="150" r="14" class="dot dot--core"/>
+        <circle cx="140" cy="270" r="8" class="dot dot--float1"/>
+        <circle cx="280" cy="250" r="6" class="dot dot--float2"/>
+      </svg>
+    </div> -->
+  </div>
+</header>
+
+<!-- ============ WORK ============ -->
+<main class="work" id="work">
+  <h2 class="work__title">Selected <span>Work</span></h2>
+
+  <div class="tabs" role="tablist">
+    <button class="tab is-active" data-filter="all">All</button>
+    <button class="tab" data-filter="real-estate">Real Estate</button>
+    <button class="tab" data-filter="law">Law</button>
+    <button class="tab" data-filter="tourism">Tourism</button>
+    <button class="tab" data-filter="games">Games</button>
+    <button class="tab" data-filter="services">Services</button>
+  </div>
+
+  <!-- كل كارت: غيّر data-category / رابط href / الصورة src / اسم المشروع -->
+  <div class="grid">
+    <a class="card" data-category="services" href="https://miraigates.com/" target="_blank" rel="noopener">
+      <img src="img/11472844.png" alt="">
+      <span class="card__label">mirai gates</span>
+    </a>
+    <a class="card" data-category="games" href="https://hocuspocuseg.com/" target="_blank" rel="noopener">
+      <img src="img/imgh5263.png" alt="">
+      <span class="card__label">Hocus Pocus</span>
+    </a>
+    <a class="card" data-category="tourism" href="https://example.com" target="_blank" rel="noopener">
+      <img src="https://picsum.photos/seed/tour1/600/600" alt="">
+      <span class="card__label">Nile Voyages</span>
+    </a>
+    <a class="card" data-category="games" href="https://example.com" target="_blank" rel="noopener">
+      <img src="https://picsum.photos/seed/game1/600/600" alt="">
+      <span class="card__label">Pixel Quest</span>
+    </a>
+    <a class="card" data-category="stores" href="https://example.com" target="_blank" rel="noopener">
+      <img src="https://picsum.photos/seed/store1/600/600" alt="">
+      <span class="card__label">Loom Boutique</span>
+    </a>
+    <a class="card" data-category="real-estate" href="https://example.com" target="_blank" rel="noopener">
+      <img src="https://picsum.photos/seed/estate2/600/600" alt="">
+      <span class="card__label">Marina View</span>
+    </a>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2026</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
