@@ -94,6 +94,42 @@ img{display:block;max-width:100%}
 }
 .btn-primary:hover{background:var(--blue);transform:translateY(-2px)}
 
+/* ---------- Skills chips ---------- */
+.skills{
+  list-style:none;
+  margin-top:18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.skill{
+  --tint:color-mix(in srgb, var(--c) 9%, #fff);
+  --edge:color-mix(in srgb, var(--c) 24%, #fff);
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:5px 11px 5px 9px;
+  border-radius:999px;
+  border:1px solid var(--edge, var(--border));
+  background:var(--tint, #fff);
+  font-size:.76rem;
+  font-weight:500;
+  line-height:1;
+  color:var(--navy-800);
+  white-space:nowrap;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.skill__icon{
+  width:14px;
+  height:14px;
+  flex:none;
+  color:var(--c);
+}
+.skill:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px color-mix(in srgb, var(--c) 22%, transparent);
+}
+
 /* signature mark */
 .hero__mark{display:flex;justify-content:center}
 .mark-svg{width:100%;max-width:360px;height:auto}
@@ -147,6 +183,37 @@ img{display:block;max-width:100%}
 }
 .tab:hover{border-color:var(--navy-700);color:var(--navy-900)}
 .tab.is-active{background:var(--navy-900);border-color:var(--navy-900);color:#fff}
+
+.tab{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+}
+.tab__count{
+  min-width:19px;
+  padding:0 5px;
+  height:19px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  background:var(--bg-soft);
+  color:var(--text-muted);
+  font-size:.7rem;
+  font-weight:600;
+  line-height:1;
+  transition:background .2s, color .2s;
+}
+.tab:hover .tab__count{background:var(--border);color:var(--navy-900)}
+.tab.is-active .tab__count{background:rgba(255,255,255,.18);color:#fff}
+.tab.is-empty:not(.is-active){opacity:.55}
+
+.work__empty{
+  color:var(--text-muted);
+  font-size:.95rem;
+  padding:40px 0;
+}
+.work__empty[hidden]{display:none}
 
 .grid{
   display:grid;
@@ -209,6 +276,7 @@ img{display:block;max-width:100%}
   .hero__inner{grid-template-columns:1fr;text-align:center}
   .hero__bio{margin-left:auto;margin-right:auto}
   .hero__actions{justify-content:center}
+  .skills{justify-content:center}
   .hero__mark{order:-1;max-width:260px;margin:0 auto}
   .grid{grid-template-columns:repeat(2,1fr)}
 }
