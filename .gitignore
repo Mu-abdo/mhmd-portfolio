@@ -3,3 +3,12 @@
 /img/*.jpg
 /img/*.jpeg
 /img/*.jfif
+
+# Local agent instructions and private working notes
+/AGENTS.md
+/SITE_WORKFLOW.md
+/.codex/
+/.agents/
+.env
+.env.*
+!.env.example

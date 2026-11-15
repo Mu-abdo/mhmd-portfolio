@@ -100,9 +100,10 @@
 <!-- ============ WORK ============ -->
 <main class="work" id="work">
   <h2 class="work__title">Selected <span>Work</span></h2>
+  <p class="work__intro">A closer look at the websites I build. Select a project to explore.</p>
 
   <!-- العدد بيتحسب لوحده من الكروت — مش محتاج تعدّله يدويًا -->
-  <div class="tabs" role="tablist">
+  <div class="tabs" role="group" aria-label="Filter projects">
     <button class="tab is-active" data-filter="all"><span class="tab__name">All</span><span class="tab__count"></span></button>
     <button class="tab" data-filter="real-estate"><span class="tab__name">Real Estate</span><span class="tab__count"></span></button>
     <button class="tab" data-filter="law"><span class="tab__name">Law</span><span class="tab__count"></span></button>
@@ -134,7 +135,7 @@
       <span class="card__label">جمعية مسكن</span>
     </a>
     <a class="card" data-category="law" href="https://redaelsayedlawfirm.com/" target="_blank" rel="noopener">
-      <img src="img/b59f-9e9af27db73e.webp" alt="">
+      <img src="img/reda-elsayed-lawfirm.webp" alt="">
       <span class="card__label">Reda Elsayed Lawfirm</span>
     </a>
     <a class="card" data-category="tourism" href="https://www.tmxreisen.de/" target="_blank" rel="noopener">
@@ -158,22 +159,43 @@
       <span class="card__label">Kayanac ERP</span>
     </a>
     <a class="card" data-category="real-estate" href="https://solistarealestate.com/" target="_blank" rel="noopener">
-      <img src="img/Solista Real Estate Laptop Mockup.png" alt="">
+      <img src="img/solista-real-estate.webp" alt="">
       <span class="card__label">Solista Real Estate</span>
     </a>
     <a class="card" data-category="real-estate" href="https://asasegy.com/" target="_blank" rel="noopener">
       <img src="img/asas-real-estate.webp" alt="">
       <span class="card__label">ASAS Real Estate</span>
     </a>
+    <a class="card" data-category="services" href="https://acraft-eg.com/" target="_blank" rel="noopener">
+      <img src="img/acraft.webp" alt="">
+      <span class="card__label">ACRAFT</span>
+    </a>
   </div>
 
-  <p class="work__empty" hidden>No projects in this category yet.</p>
+  <p class="work__empty" role="status" hidden>No projects in this category yet.</p>
 </main>
 
 <footer class="footer">
   <p>© 2026</p>
 </footer>
 
+<dialog class="project-modal" aria-labelledby="project-title" aria-describedby="project-description">
+  <button class="project-modal__close" type="button" aria-label="Close project details" autofocus>&times;</button>
+  <div class="project-modal__layout">
+    <div class="project-modal__visual"><img id="project-image" src="" alt=""></div>
+    <div class="project-modal__content">
+      <p class="project-modal__category" id="project-category"></p>
+      <h2 id="project-title" dir="auto"></h2>
+      <p class="project-modal__description" id="project-description"></p>
+      <dl class="project-modal__facts">
+        <div><dt>Project type</dt><dd id="project-type"></dd></div>
+        <div><dt>Website</dt><dd id="project-domain"></dd></div>
+      </dl>
+      <a class="btn-primary project-modal__visit" id="project-link" target="_blank" rel="noopener noreferrer">Visit website <span aria-hidden="true">&#8599;</span></a>
+      <p class="project-modal__hint">Opens in a new tab</p>
+    </div>
+  </div>
+</dialog>
 <script src="script.js"></script>
 </body>
 </html>
