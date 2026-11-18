@@ -338,3 +338,67 @@ img{display:block;max-width:100%}
   .project-modal__visit{width:100%;justify-self:stretch}
   .project-modal__hint{justify-self:center}
 }
+
+/* Hero concept: a navy introduction with a lighter editorial detail panel. */
+.hero{
+  background:var(--navy-900);
+  color:#fff;
+  padding:clamp(64px,8vw,112px) 8vw;
+}
+.hero__inner{max-width:1360px}
+.hero__text{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  column-gap:clamp(48px,8vw,120px);
+  align-items:start;
+}
+.hero .eyebrow{grid-column:1;color:#a7c7ff;letter-spacing:.06em;margin-bottom:28px}
+.hero__name{
+  grid-column:1;
+  max-width:12ch;
+  color:#fff;
+  font-size:clamp(3rem,5.6vw,5.5rem);
+  line-height:1.02;
+  letter-spacing:-.045em;
+}
+.hero__role{grid-column:1;color:#b9cff2;font-size:clamp(1.05rem,1.4vw,1.3rem);line-height:1.5;margin-top:22px}
+.hero__bio{
+  grid-column:2;
+  grid-row:2 / span 2;
+  max-width:48ch;
+  margin:0;
+  padding:0 0 0 28px;
+  border-left:2px solid #3979e8;
+  color:#d4e0f2;
+  font-size:clamp(.95rem,1.1vw,1.05rem);
+  line-height:1.8;
+}
+.hero .skills{
+  grid-column:1 / -1;
+  grid-row:4;
+  justify-content:flex-start;
+  margin-top:56px;
+  padding-top:24px;
+  border-top:1px solid #ffffff30;
+  gap:9px;
+}
+.hero .skill{background:#fff;border-color:#fff;color:var(--navy-900);padding:8px 12px;font-size:.78rem}
+.hero__actions{grid-column:1 / -1;grid-row:5;margin-top:28px;justify-content:flex-start}
+.hero .icon-btn{border-color:#ffffff45;background:transparent;color:#fff}
+.hero .icon-btn:hover{background:#fff;color:var(--navy-900)}
+.hero .btn-primary{background:#fff;color:var(--navy-900)}
+.hero .btn-primary:hover{background:#cfe0ff}
+.hero a:focus-visible{outline-color:#a7c7ff}
+@media(max-width:860px){
+  .hero__inner{text-align:left}
+  .hero__text{grid-template-columns:1fr}
+  .hero__name{max-width:15ch}
+  .hero__bio{grid-column:1;grid-row:auto;margin:30px 0 0;max-width:65ch}
+  .hero .skills{grid-column:1;grid-row:auto;margin-top:38px}
+  .hero__actions{grid-column:1;grid-row:auto}
+}
+@media(max-width:520px){
+  .hero{padding:60px 6vw 64px}
+  .hero__name{font-size:clamp(2.6rem,10vw,3.5rem);overflow-wrap:anywhere}
+  .hero__bio{padding-left:18px}
+}
