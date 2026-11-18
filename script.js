@@ -21,7 +21,8 @@ const projects = {
   'kayanac.net': ['A website introducing Kayanac ERP and its business management offering, helping visitors explore the product and contact the team.', 'ERP product website'],
   'solistarealestate.com': ['A real estate website for Solista, presenting the business and its property offering with a visual focus on real estate.', 'Real estate website'],
   'asasegy.com': ['A website for ASAS Real Estate, showcasing the company and its property development offering.', 'Property showcase'],
-  'acraft-eg.com': ['An Arabic automotive website for ACRAFT, using vehicle imagery and a clear presentation to introduce the business and its automotive offering.', 'Automotive website']
+  'acraft-eg.com': ['An Arabic automotive website for ACRAFT, using vehicle imagery and a clear presentation to introduce the business and its automotive offering.', 'Automotive website'],
+  'mu-abdo.github.io': ['An Arabic website for بودكاست حقق, presenting the podcast through a dedicated web page.', 'Podcast website']
 };
 const matches = filter => card => filter === 'all' || card.dataset.category === filter;
 
@@ -49,11 +50,20 @@ cards.forEach(card => {
   image.loading = 'lazy';
   image.decoding = 'async';
   card.setAttribute('aria-haspopup', 'dialog');
-  card.setAttribute('aria-label', `View ${title} project details`);
+  const hostname = new URL(card.href).hostname.toLowerCase();
+  const offline = hostname === 'github.com' || hostname.endsWith('.github.com') || hostname === 'github.io' || hostname.endsWith('.github.io');
+  const status = offline ? 'Offline' : 'Online';
+  card.setAttribute('aria-label', `View ${title} project details, ${categories[card.dataset.category]}, ${status}`);
+  const metadata = document.createElement('span');
+  metadata.className = 'card__metadata';
   const caption = document.createElement('span');
   caption.className = 'card__category';
   caption.textContent = categories[card.dataset.category];
-  card.append(caption);
+  const statusLabel = document.createElement('span');
+  statusLabel.className = `card__status card__status--${status.toLowerCase()}`;
+  statusLabel.textContent = status;
+  metadata.append(caption, statusLabel);
+  card.append(metadata);
   card.addEventListener('click', event => {
     // Preserve opening the original website with a modified link click.
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
