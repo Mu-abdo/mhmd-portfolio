@@ -402,3 +402,20 @@ img{display:block;max-width:100%}
   .hero__name{font-size:clamp(2.6rem,10vw,3.5rem);overflow-wrap:anywhere}
   .hero__bio{padding-left:18px}
 }
+
+/* A small, dismissible invitation to get in touch. */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.contact-helper{position:fixed;left:clamp(12px,2vw,28px);bottom:clamp(12px,2vw,24px);z-index:10;display:flex;flex-direction:column;align-items:flex-start;gap:0}
+.contact-helper[dir="rtl"]{align-items:flex-end}
+.contact-helper__panel{width:min(270px,calc(100vw - 32px));padding:16px;border:1px solid #dbe6f5;border-radius:18px 18px 5px 18px;background:#fff;color:var(--navy-900);box-shadow:0 12px 40px #0a19302e;text-align:right;margin-bottom:-12px}
+.contact-helper__panel[hidden]{display:none}
+.contact-helper__close{float:left;width:30px;height:30px;margin:-8px 8px 2px -8px;border:0;border-radius:50%;background:#edf3fb;color:var(--navy-900);font-size:22px;line-height:1;cursor:pointer}
+.contact-helper[dir="ltr"] .contact-helper__panel{text-align:left;border-radius:18px 18px 18px 5px}
+.contact-helper[dir="ltr"] .contact-helper__close{float:right;margin:-8px -8px 2px 8px}
+.contact-helper__message{min-height:3.5em;font-size:.9rem;font-weight:600;line-height:1.65}
+.contact-helper__link{display:inline-flex;align-items:center;justify-content:center;margin-top:10px;padding:9px 13px;border-radius:9px;background:var(--navy-900);color:#fff;font-size:.84rem;font-weight:600}
+.contact-helper__link:hover{background:var(--blue)}
+.contact-helper__toggle{width:132px;height:156px;padding:0;border:0;background:transparent;cursor:grab;filter:drop-shadow(0 5px 8px #0a193030)}
+.contact-helper--dragging .contact-helper__toggle{cursor:grabbing}
+.contact-helper__toggle img{width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+@media(max-width:520px){.contact-helper__toggle{width:100px;height:120px}}

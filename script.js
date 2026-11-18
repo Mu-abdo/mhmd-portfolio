@@ -95,3 +95,107 @@ modal.addEventListener('close', () => {
   document.body.classList.remove('modal-open');
   opener?.focus({ preventScroll: true });
 });
+
+const helper = document.querySelector('.contact-helper');
+const helperPanel = helper.querySelector('.contact-helper__panel');
+const helperToggle = helper.querySelector('.contact-helper__toggle');
+const helperClose = helper.querySelector('.contact-helper__close');
+const helperText = helper.querySelector('.contact-helper__typed');
+const helperAccessible = helper.querySelector('.contact-helper__accessible');
+const helperLink = helper.querySelector('.contact-helper__link');
+const greetings = [
+  { lang: 'ar', dir: 'rtl', text: 'أهلاً! عندك استفسار أو فكرة مشروع؟ يسعدني أسمع منك.', link: 'تواصل معي على واتساب', close: 'إغلاق رسالة الترحيب', open: 'فتح رسالة التواصل', toggleClose: 'إغلاق رسالة التواصل', whatsapp: 'مرحبًا محمد، شفت البورتفوليو وحابب أستفسر عن مشروع' },
+  { lang: 'en', dir: 'ltr', text: "Hi! Have a question or a project in mind? I'd love to hear from you.", link: 'Contact me on WhatsApp', close: 'Close welcome message', open: 'Open contact message', toggleClose: 'Close contact message', whatsapp: "Hi Muhammed, I saw your portfolio and I'd like to ask about a project." }
+];
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const mobileHelper = window.matchMedia('(max-width: 520px)');
+let typingTimer;
+let cycleTimer;
+let languageIndex = 0;
+let helperInteracted = false;
+let helperDrag = null;
+let suppressHelperClick = false;
+
+helperToggle.addEventListener('pointerdown', event => {
+  if (event.pointerType !== 'mouse' || event.button !== 0) return;
+  const bounds = helper.getBoundingClientRect();
+  helperDrag = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, left: bounds.left, bottom: window.innerHeight - bounds.bottom, moved: false };
+  helperToggle.setPointerCapture(event.pointerId);
+});
+helperToggle.addEventListener('pointermove', event => {
+  if (!helperDrag || event.pointerId !== helperDrag.pointerId) return;
+  const dx = event.clientX - helperDrag.x;
+  const dy = event.clientY - helperDrag.y;
+  if (!helperDrag.moved && Math.hypot(dx, dy) < 5) return;
+  helperDrag.moved = true;
+  helperInteracted = true;
+  helper.classList.add('contact-helper--dragging');
+  const bounds = helper.getBoundingClientRect();
+  helper.style.left = `${Math.max(0, Math.min(window.innerWidth - bounds.width, helperDrag.left + dx))}px`;
+  helper.style.bottom = `${Math.max(0, Math.min(window.innerHeight - bounds.height, helperDrag.bottom - dy))}px`;
+});
+function finishHelperDrag(event) {
+  if (!helperDrag || event.pointerId !== helperDrag.pointerId) return;
+  suppressHelperClick = helperDrag.moved;
+  helperDrag = null;
+  helper.classList.remove('contact-helper--dragging');
+}
+helperToggle.addEventListener('pointerup', finishHelperDrag);
+helperToggle.addEventListener('pointercancel', finishHelperDrag);
+
+function openHelper() {
+  const greeting = greetings[languageIndex];
+  helper.lang = greeting.lang;
+  helper.dir = greeting.dir;
+  helper.setAttribute('aria-label', greeting.lang === 'ar' ? 'التواصل' : 'Contact');
+  helperPanel.hidden = false;
+  helperToggle.setAttribute('aria-expanded', 'true');
+  helperToggle.setAttribute('aria-label', greeting.toggleClose);
+  helperClose.setAttribute('aria-label', greeting.close);
+  helperAccessible.textContent = greeting.text;
+  helperLink.textContent = greeting.link;
+  helperLink.href = `https://wa.me/201552259617?text=${encodeURIComponent(greeting.whatsapp)}`;
+  clearInterval(typingTimer);
+  if (reducedMotion.matches) {
+    helperText.textContent = greeting.text;
+    return;
+  }
+  helperText.textContent = '';
+  let index = 0;
+  typingTimer = setInterval(() => {
+    helperText.textContent = greeting.text.slice(0, ++index);
+    if (index >= greeting.text.length) clearInterval(typingTimer);
+  }, 35);
+}
+function closeHelper() {
+  clearInterval(typingTimer);
+  clearTimeout(cycleTimer);
+  helperPanel.hidden = true;
+  helperToggle.setAttribute('aria-expanded', 'false');
+  helperToggle.setAttribute('aria-label', greetings[languageIndex].open);
+}
+function runHelperCycle() {
+  clearTimeout(cycleTimer);
+  if (helperPanel.hidden || reducedMotion.matches) return;
+  cycleTimer = setTimeout(() => {
+    if (!modal.open && !helperPanel.contains(document.activeElement) && !(window.matchMedia('(hover: hover)').matches && helperPanel.matches(':hover'))) {
+      languageIndex = 1 - languageIndex;
+      openHelper();
+    }
+    runHelperCycle();
+  }, 5500);
+}
+helperToggle.addEventListener('click', event => {
+  if (suppressHelperClick && event.detail !== 0) { suppressHelperClick = false; return; }
+  suppressHelperClick = false;
+  helperInteracted = true;
+  if (helperPanel.hidden) { openHelper(); runHelperCycle(); }
+  else closeHelper();
+});
+helperClose.addEventListener('click', () => { helperInteracted = true; closeHelper(); helperToggle.focus(); });
+mobileHelper.addEventListener('change', event => {
+  if (event.matches) closeHelper();
+});
+setTimeout(() => {
+  if (!mobileHelper.matches && !helperInteracted && helperPanel.hidden) { openHelper(); runHelperCycle(); }
+}, 3500);
