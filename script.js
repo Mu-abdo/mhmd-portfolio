@@ -22,7 +22,8 @@ const projects = {
   'solistarealestate.com': ['A real estate website for Solista, presenting the business and its property offering with a visual focus on real estate.', 'Real estate website'],
   'asasegy.com': ['A website for ASAS Real Estate, showcasing the company and its property development offering.', 'Property showcase'],
   'acraft-eg.com': ['An Arabic automotive website for ACRAFT, using vehicle imagery and a clear presentation to introduce the business and its automotive offering.', 'Automotive website'],
-  'mu-abdo.github.io': ['An Arabic website for بودكاست حقق, presenting the podcast through a dedicated web page.', 'Podcast website']
+  'mu-abdo.github.io': ['An Arabic website for بودكاست حقق, presenting the podcast through a dedicated web page.', 'Podcast website'],
+  'mildaarabia.com': ['An online store for Milda Arabia, presenting a collection of baby products.', 'Online store']
 };
 const matches = filter => card => filter === 'all' || card.dataset.category === filter;
 
