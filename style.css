@@ -415,7 +415,7 @@ img{display:block;max-width:100%}
 .contact-helper__message{min-height:3.5em;font-size:.9rem;font-weight:600;line-height:1.65}
 .contact-helper__link{display:inline-flex;align-items:center;justify-content:center;margin-top:10px;padding:9px 13px;border-radius:9px;background:var(--navy-900);color:#fff;font-size:.84rem;font-weight:600}
 .contact-helper__link:hover{background:var(--blue)}
-.contact-helper__toggle{width:132px;height:156px;padding:0;border:0;background:transparent;cursor:grab;filter:drop-shadow(0 5px 8px #0a193030)}
+.contact-helper__toggle{width:132px;height:156px;padding:0;border:0;background:transparent;cursor:grab;touch-action:none;filter:drop-shadow(0 5px 8px #0a193030)}
 .contact-helper--dragging .contact-helper__toggle{cursor:grabbing}
 .contact-helper__toggle img{width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
 @media(max-width:520px){.contact-helper__toggle{width:100px;height:120px}}

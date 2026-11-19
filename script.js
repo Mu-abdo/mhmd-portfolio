@@ -103,6 +103,7 @@ const helperClose = helper.querySelector('.contact-helper__close');
 const helperText = helper.querySelector('.contact-helper__typed');
 const helperAccessible = helper.querySelector('.contact-helper__accessible');
 const helperLink = helper.querySelector('.contact-helper__link');
+const robotImage = helperToggle.querySelector('img');
 const greetings = [
   { lang: 'ar', dir: 'rtl', text: 'أهلاً! عندك استفسار أو فكرة مشروع؟ يسعدني أسمع منك.', link: 'تواصل معي على واتساب', close: 'إغلاق رسالة الترحيب', open: 'فتح رسالة التواصل', toggleClose: 'إغلاق رسالة التواصل', whatsapp: 'مرحبًا محمد، شفت البورتفوليو وحابب أستفسر عن مشروع' },
   { lang: 'en', dir: 'ltr', text: "Hi! Have a question or a project in mind? I'd love to hear from you.", link: 'Contact me on WhatsApp', close: 'Close welcome message', open: 'Open contact message', toggleClose: 'Close contact message', whatsapp: "Hi Muhammed, I saw your portfolio and I'd like to ask about a project." }
@@ -115,9 +116,16 @@ let languageIndex = 0;
 let helperInteracted = false;
 let helperDrag = null;
 let suppressHelperClick = false;
+let robotTimer;
+
+function setRobotState(state, resetAfter = 0) {
+  clearTimeout(robotTimer);
+  robotImage.src = `img/robot-${state}.gif`;
+  if (resetAfter) robotTimer = setTimeout(() => setRobotState('idle'), resetAfter);
+}
 
 helperToggle.addEventListener('pointerdown', event => {
-  if (event.pointerType !== 'mouse' || event.button !== 0) return;
+  if (!event.isPrimary || event.button !== 0) return;
   const bounds = helper.getBoundingClientRect();
   helperDrag = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, left: bounds.left, bottom: window.innerHeight - bounds.bottom, moved: false };
   helperToggle.setPointerCapture(event.pointerId);
@@ -127,6 +135,7 @@ helperToggle.addEventListener('pointermove', event => {
   const dx = event.clientX - helperDrag.x;
   const dy = event.clientY - helperDrag.y;
   if (!helperDrag.moved && Math.hypot(dx, dy) < 5) return;
+  if (!helperDrag.moved) setRobotState('dizzy');
   helperDrag.moved = true;
   helperInteracted = true;
   helper.classList.add('contact-helper--dragging');
@@ -137,6 +146,7 @@ helperToggle.addEventListener('pointermove', event => {
 function finishHelperDrag(event) {
   if (!helperDrag || event.pointerId !== helperDrag.pointerId) return;
   suppressHelperClick = helperDrag.moved;
+  if (helperDrag.moved) setRobotState('dizzy', 3000);
   helperDrag = null;
   helper.classList.remove('contact-helper--dragging');
 }
@@ -189,7 +199,7 @@ helperToggle.addEventListener('click', event => {
   if (suppressHelperClick && event.detail !== 0) { suppressHelperClick = false; return; }
   suppressHelperClick = false;
   helperInteracted = true;
-  if (helperPanel.hidden) { openHelper(); runHelperCycle(); }
+  if (helperPanel.hidden) { setRobotState('idea', 3000); openHelper(); runHelperCycle(); }
   else closeHelper();
 });
 helperClose.addEventListener('click', () => { helperInteracted = true; closeHelper(); helperToggle.focus(); });
