@@ -24,7 +24,9 @@ const projects = {
   'acraft-eg.com': ['An Arabic automotive website for ACRAFT, using vehicle imagery and a clear presentation to introduce the business and its automotive offering.', 'Automotive website'],
   'mu-abdo.github.io': ['An Arabic website for بودكاست حقق, presenting the podcast through a dedicated web page.', 'Podcast website'],
   'mildaarabia.com': ['An online store for Milda Arabia, presenting a collection of baby products.', 'Online store'],
-  'elmasriyatradeco.com': ['A business website for Elmasriya Trade, presenting its metal barrel manufacturing and products.', 'Business website']
+  'elmasriyatradeco.com': ['A business website for Elmasriya Trade, presenting its metal barrel manufacturing and products.', 'Business website'],
+  'albatrosfortours.com': ['A tourism website for Albatros Tours, presenting trips and destinations in Egypt.', 'Tourism website'],
+  'inbag-eg.com': ['An online store for Inbag, presenting a collection of bags and laptop sleeves.', 'Online store']
 };
 const matches = filter => card => filter === 'all' || card.dataset.category === filter;
 
