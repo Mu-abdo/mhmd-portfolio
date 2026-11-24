@@ -419,3 +419,27 @@ img{display:block;max-width:100%}
 .contact-helper--dragging .contact-helper__toggle{cursor:grabbing}
 .contact-helper__toggle img{width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
 @media(max-width:520px){.contact-helper__toggle{width:100px;height:120px}}
+
+/* Fixed contact shortcut, opposite the draggable contact helper. */
+.whatsapp-float{position:fixed;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));z-index:10;display:grid;place-items:center;width:56px;height:56px;border:2px solid #fff;border-radius:50%;background:#128c4b;color:#fff;box-shadow:0 6px 20px #0a19304d;transition:background-color .2s,transform .2s}
+.whatsapp-float svg{width:29px;height:29px}
+.whatsapp-float:hover{background:#0d713b;transform:translateY(-3px)}
+.whatsapp-float:focus-visible{outline:3px solid #14385f;outline-offset:4px}
+.modal-open .whatsapp-float{visibility:hidden}
+@media(max-width:520px){.whatsapp-float{right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));width:52px;height:52px}}
+
+/* Clear next steps from the introduction and project gallery. */
+.hero__work-link{min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:0 22px;border:1px solid #fff;border-radius:8px;color:#fff;font-weight:600;font-size:.92rem;transition:background-color .2s,color .2s}
+.hero__work-link:hover{background:#fff;color:var(--navy-900)}
+.contact-section{padding:40px 8vw 70px;background:var(--bg-soft)}
+.contact-section__inner{max-width:1360px;margin:0 auto;padding:clamp(28px,5vw,64px);display:flex;align-items:center;justify-content:space-between;gap:32px;border-radius:20px;background:var(--navy-900);color:#fff}
+.contact-section h2{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.15}
+.contact-section p{margin-top:12px;max-width:48ch;color:#d8e5f7;line-height:1.6}
+.contact-section__actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px}
+.contact-section__primary,.contact-section__email{min-height:46px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;font-weight:600;font-size:.92rem}
+.contact-section__primary{background:#fff;color:var(--navy-900)}
+.contact-section__primary:hover{background:#cfe0ff}
+.contact-section__email{border:1px solid #ffffff80;color:#fff}
+.contact-section__email:hover{background:#ffffff1a}
+.contact-section a:focus-visible{outline-color:#fff}
+@media(max-width:700px){.contact-section{padding:24px 6vw 56px}.contact-section__inner{align-items:flex-start;flex-direction:column}.contact-section__actions{width:100%}}
